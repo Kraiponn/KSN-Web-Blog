@@ -1,0 +1,105 @@
+/*******************************/
+/*        Table Content        */
+/* 
+1. Navigation-Menu
+2. Image-Slide-Show
+3. Policy
+4. Blog
+5. Footer
+
+Color System: 000000 212121 263238 2962FF 00BFA5 1DE9B6
+-------------------------------*/
+
+html, body{
+    font-family: 'Prompt', sans-serif;
+    height: 100%;
+}
+
+/* Navigation-Menu */
+.bg-alpha{
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Image-Slide-Show */
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel-inner active{
+    height: 100%;
+}
+
+.carousel-img{
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-caption{
+    top: 45%;
+}
+
+.back-screen{
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Policy */
+.border-short-bottom{
+    position: relative;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.border-short-bottom::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background: #000000;
+    height: 2px;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+
+/* Blog */
+.wrapper-card-img{
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+}
+
+.wrapper-card-img img{
+    position: absolute;
+    top: 0;
+    transition: 1s;
+}
+
+.wrapper-card-img img:hover{
+    transform: scale(1.2);
+}
+
+
+/* Footer */
+.semi-footer{
+    background: #263238;
+    color: #dddada;
+}
+
+.semi-footer a{
+    color: #ffffff;
+}
+
+.semi-footer h4{
+    color: #2962FF;
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+
+#map {
+    height: 300px;
+}
+
+
