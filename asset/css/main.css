@@ -15,9 +15,20 @@ html, body{
     height: 100%;
 }
 
+@media(max-width: 768px){
+    .display-4{
+        font-size: 2.5rem;
+    }
+}
+
 /* Navigation-Menu */
 .bg-alpha{
     background: rgba(0, 0, 0, 0.5);
+}
+
+#navbar{
+    padding: 25px;
+    transition: 0.55s;
 }
 
 
@@ -67,8 +78,15 @@ html, body{
 /* Blog */
 .wrapper-card-img{
     position: relative;
-    padding-top: 56.25%;
+    /* padding-top: 56.25%; */
     overflow: hidden;
+}
+
+.wrapper-card-img::after{
+    content: '';
+    padding-top: 56.25%;
+    display: block;
+    height: 0;
 }
 
 .wrapper-card-img img{
@@ -110,3 +128,180 @@ footer.footer{
     height: 75px;
     line-height: 75px;
 }
+
+
+/* Scroll-Top */
+#img-scroll-top{
+    width: 65px;
+    height: 65px;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    z-index: 120000;
+    opacity: 0.5;
+    cursor: pointer;
+    display: none;
+}
+
+/* Form Alert Dialog */
+#form-alert-dialog{
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    z-index: 15000;
+    width: 400px;
+    background: #2962FF;
+    color: #ffffff;
+    display: none;
+}
+
+
+
+/****************************   About Page  ******************************/
+.page-title{
+    position: relative;
+    display: block;
+    padding-top: 250px;
+    padding-bottom: 100px;
+    color: #ffffff;
+}
+
+/* Timeline */
+.timeline{
+    list-style: none;
+    padding: 20px 0px;
+    position: relative;
+}
+
+.timeline::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #e6e6e6;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+}
+
+.timeline > li{
+    position: relative;
+    margin-bottom: 40px;
+}
+
+li > .timeline-badge{
+    position: absolute;
+    background: #ffffff;
+    border: 3px solid #84ba3f;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #ffffff;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin-left: -9px;
+    top: 15px;
+}
+
+li > .timeline-badge::before{
+    content: "";
+    position: absolute;
+    background: #e6e6e6;
+    width: 25px;
+    height: 2px;
+    right: 20px;
+    top: 5px;
+}
+
+li.inverted > .timeline-badge::before{
+    right: -32px;
+}
+
+li > .timeline-badge p{
+    width: 200px;
+    margin-top: -9px;
+    margin-left: 25px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+li.inverted > .timeline-badge p{
+    float: right;
+    text-align: right;
+    margin-right: 25px;
+}
+
+li > .timeline-card{
+    position: relative;
+    width: 46%;
+    float: left;
+    text-align: right;
+    padding: 0px 10px; 
+}
+
+li.inverted > .timeline-card{
+    float: right;
+    text-align: left;
+}
+
+.timeline > li::after{
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.timeline-arrow{
+    width: 100%;
+    text-align: center;
+    bottom: -70px;
+    color: #e6e6e6;
+}
+
+@media(max-width: 768px){
+    .timeline::before,
+    .timeline-badge{
+        left: 40px !important;
+    }
+
+    .timeline-badge::before{
+        right: -32px !important;
+    }
+
+    .timeline-badge p,
+    li.inverted > .timeline-badge p{
+        margin-left: 50px !important;
+        text-align: left;
+        float: left;
+    }
+
+    li > .timeline-card{
+        width: 100%;
+        text-align: left;
+        padding: 37px 0 0 85px;
+    }
+
+    .timeline-arrow{
+        text-align: left;
+        left: 32px;
+    }
+}
+
+
+/* Star Rating */
+/* ☆★ */
+.star-rating{
+    color: gold;
+    font-size: 2em;
+    position: relative;
+    display: inline-block;
+}
+
+.star-current{
+    position: absolute;
+    top: 0;
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
