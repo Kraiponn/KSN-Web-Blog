@@ -6,6 +6,9 @@
 3. Policy
 4. Blog
 5. Footer
+6. Section Timeline
+7. Section Blog 
+8. Section Star Rating
 
 Color System: 000000 212121 263238 2962FF 00BFA5 1DE9B6
 -------------------------------*/
@@ -166,7 +169,7 @@ footer.footer{
     color: #ffffff;
 }
 
-/* Timeline */
+/* Section Timeline */
 .timeline{
     list-style: none;
     padding: 20px 0px;
@@ -285,8 +288,33 @@ li.inverted > .timeline-card{
     }
 }
 
+/* Section Blog */
+.btn-group-custom button{
+    width: 120px;
+    margin-bottom: 0.5rem;
+}
 
-/* Star Rating */
+/* Section Blog Detail */
+.blog-image{
+    padding: 200px 0 120px;
+    color: #ffffff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.blog-content{
+    padding: 15px 20px;
+    box-shadow: 0 0 10px #ee66ee;
+}
+
+@media(max-width: 768px){
+    .blog-content{
+        padding: 20px 30px;
+    }
+}
+
+
+/* Section Star Rating */
 /* ☆★ */
 .star-rating{
     color: gold;
