@@ -7,46 +7,18 @@
     <title>Contact</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
+    <!-- <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css"> -->
     <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="asset/css/main.css">
     
 
 
 </head>
-<body>
+<body id="contact">
 <!-- Navigation Menu -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-alpha fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="asset/images/logo3.png" width="35" height="35" class="d-inline-block align-top" alt="">
-                KSN-Web Blog
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include("includes/include.php"); ?>
 
 <!-- Header -->
     <header class="jarallax" data-jarallax data-speed="0.2" style="background-image: url('https://images.unsplash.com/photo-1520085601670-ee14aa5fa3e8?ixlib=rb-0.3.5&s=01ecf1b5dc59d106e635bd76500bbb07&auto=format&fit=crop&w=1350&q=60');">
@@ -55,12 +27,6 @@
             <p class="lead">คุณสามารถติดต่อสอบถามข้อเพิ่มเติมตามด้านล่าง</p>
         </div>
     </header>
-    <!-- <header class="jarallax" data-jarallax='{"speed": 0.4}' style="background-image: url('https://images.unsplash.com/photo-1520085601670-ee14aa5fa3e8?ixlib=rb-0.3.5&s=01ecf1b5dc59d106e635bd76500bbb07&auto=format&fit=crop&w=1350&q=60');">
-        <div class="blog-image">
-            <h1 class="display-4 font-weight-bold">ข้อมูลการติดต่อ</h1>
-            <p class="lead">คุณสามารถติดต่อสอบถามข้อเพิ่มเติมตามด้านล่าง</p>
-        </div>
-    </header> -->
 
 <!-- Section Blog -->
     <div class="container py-5">
@@ -101,29 +67,29 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">แบบฟอร์มติดต่อเรา</h4>
-                        <form action="">
+                        <form action="php/contacts.php" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="name">ชื่อ</label>
-                                    <input type="text" id="name" class="form-control" placeholder="ชื่อของคุณ">
+                                    <input type="text" id="name" name="name" class="form-control" require placeholder="ชื่อของคุณ">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="phone">เบอร์โทร</label>
-                                    <input type="text" id="phone" class="form-control" placeholder="เบอร์โทรของคุณ">
+                                    <input type="text" id="phone" name="phone" class="form-control" require placeholder="เบอร์โทรของคุณ">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="email">อีเมล์</label>
-                                    <input type="text" id="email" class="form-control" placeholder="เมล์ของคุณ">
+                                    <input type="email" id="email" name="email" class="form-control" require placeholder="เมล์ของคุณ">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="message">ข้อความแสดงความเห็น</label>
-                                <textarea name="message" id="message" rows="3" class="form-control" placeholder="แสดงความเห็น"></textarea>
+                                <textarea name="message" id="message" rows="3" class="form-control" require placeholder="แสดงความเห็น"></textarea>
                             </div>
                             <div id="recaptcha-wrapper" class="text-center my-2">
-                                <div class="g-recaptcha d-inline-block" data-sitekey="6Leno34UAAAAAF9XWoQkdtboYAMC_l3_MYeFKnJQ"></div>
+                                <div class="g-recaptcha d-inline-block" data-callback="recaptchaCallBack" data-sitekey="6Leno34UAAAAAF9XWoQkdtboYAMC_l3_MYeFKnJQ"></div>
                             </div>
-                            <button class="btn btn-primary d-block mx-auto" type="submit">ส่งข้อความ</button>
+                            <button id="btn-submit" name="btn-submit" disabled class="btn btn-primary d-block mx-auto" type="submit">ส่งข้อความ</button>
                         </form>
                     </div>
                 </div>
@@ -132,85 +98,8 @@
     </div>
     
 
-<!-- Timeline About -->
-    <section class="position-relative py-5 jarallax" data-jarallax data-speed="0.2" style="background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=88b86a41ffe1921e290445f0bd0465d2&auto=format&fit=crop&w=1350&q=60');">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-12">
-                    <img class="img-fluid" width="150" src="asset/images/logo2.png" alt="">
-                    <h2 class="display-4 text-white font-weight-bold">Technology Zone</h2>
-                    <div class="star-rating">
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <div class="star-current" style="width: 50%">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 <!-- Footer -->
-    <footer class="semi-footer p-5 text-center text-md-left">
-        <div class="row">
-            <section class="col-md-4">
-                <a class="navbar-brand" href="#">
-                    <img src="asset/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-                    KSN-Web Blog
-                </a>
-
-                <br><br>
-                <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-                : 095-7396209 <br>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                : kraipon.na10@gmail.com <br>
-                <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                : 99/9 ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี 12000 
-
-                <br><br>
-                <a href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-youtube-square fa-2x" aria-hidden="true"></i></a>
-
-            </section>
-
-            <section class="col-md-3">
-                <h4>รายการเมนู</h4>
-                <ul class="navbar-nav text-center text-md-left">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="col-md-5">
-                <h4>แผนที่</h4>
-                <div id="map"></div>
-            </section>
-        </div>
-    </footer>
-
-    <footer class="footer">
-        COPYRIGHT &copy; 2018
-        <a href="#">KSN Blog Story</a>
-        All Right Reserved
-    </footer>
+    <?php include_once("includes/footer.php"); ?>
 
  <!-- On to Top -->
     <div class="to-top">
@@ -222,6 +111,7 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
     <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDascuY1auBpRr0ZUOkVigQsklvOZUrbVk &callback=initMap&callback=initMap" async defer></script>
     <script src="asset/js/main.js"></script>
 
@@ -245,6 +135,8 @@
 
 
         $(function(){
+
+
             // global variables
             captchaResized = false;
             captchaWidth = 304;
@@ -289,9 +181,10 @@
 
             if($(window).scroll(function(){
                 if($(window).scrollTop() > 1){
-                    $('.to-top').show();
+                    $('.to-top').slideDown(450);
+                    //$('.to-top').show();
                 }else{
-                    $('.to-top').hide();
+                    $('.to-top').slideUp(300);
                 }
             }));
             
@@ -302,6 +195,11 @@
             });
 
         });
+
+        function recaptchaCallBack(){
+            //console.log("test");
+            $('#btn-submit').removeAttr("disabled");
+        }
     </script>
 
 </body>

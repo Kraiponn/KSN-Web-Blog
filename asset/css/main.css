@@ -117,6 +117,14 @@ html, body{
 }
 
 .semi-footer a{
+    color: #e6ebe9;
+}
+
+.semi-footer li > a{
+    color: #a1a5a1;
+}
+
+.semi-footer li.active > a{
     color: #ffffff;
 }
 
@@ -174,6 +182,7 @@ footer.footer{
     padding-top: 250px;
     padding-bottom: 100px;
     color: #ffffff;
+    /* background: rgba(0, 0, 0, 0.5); */
 }
 
 /* Section Timeline */
@@ -301,6 +310,10 @@ li.inverted > .timeline-card{
     margin-bottom: 0.5rem;
 }
 
+.btn-group-custom a:hover{
+    text-decoration: none;
+}
+
 /* Section Blog Detail */
 .blog-image{
     padding: 200px 0 120px;
@@ -312,6 +325,11 @@ li.inverted > .timeline-card{
 .blog-content{
     padding: 15px 20px;
     box-shadow: 0 0 10px #ee66ee;
+}
+
+.owl-carousel .card-body{
+    height: 150px;
+    overflow: hidden;
 }
 
 @media(max-width: 768px){
@@ -359,3 +377,19 @@ li.inverted > .timeline-card{
 .to-top:hover{
     opacity: 1;
 }
+
+
+/* 
+    ความรักควายควาย
+    เอาห่อหมกฮวกมา
+    ทานหมา อย่าหัวซากัน
+    ความคิดฮอดบ่เคยจาง
+    เขาแค่มาสืบพัน
+    เมี่ยน - กุ้ง สุภาพร 
+    โสดโสตาย : นุช วิลาวัลย์ Rsiam 
+    ปล่อยไปตายโลด : ธัญญ่า Rsiam
+    7นาที
+    บายเบิ่ง
+    สิงึดติ
+
+*/

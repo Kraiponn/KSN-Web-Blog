@@ -1,3 +1,19 @@
+<?php
+    require_once("php/connect.php");
+    
+    $tag = isset($_GET['tag']) ? $_GET['tag'] : 'all';
+    //echo $tag;
+
+    $sql = "SELECT * FROM articles WHERE tag LIKE '%".$tag."%' AND status = 'true' ORDER BY RAND() LIMIT 6";
+    $result = $conn->query($sql);
+
+    if(!$result){
+        header('location: blog.php');
+    }
+
+    //print_r($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,38 +40,13 @@
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <link rel="stylesheet" href="asset/css/main.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
+    <link rel="stylesheet" href="maps/documentation/javascript/cgc/demos.css">
 
 
 </head>
-<body>
+<body id="home">
 <!-- Navigation Menu -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-alpha fixed-top">
-        <a class="navbar-brand" href="#">
-            <img src="asset/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-            KSN-Web Blog
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto text-center">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include("includes/include.php"); ?>
 
 <!-- Show Slide Image -->
     <div id="img-indicator" class="carousel slide" data-ride="carousel">
@@ -147,151 +138,38 @@
             เว็ปบล็อค
         </h3>
         <div class="row">
-            <section class="col-12 col-sm-6 col-md-4 p-3">
+            <?php 
+                if($result->num_rows){
+                    while($row = $result->fetch_assoc()){
+            ?>
+
+            <section class="col-12 col-sm-6 col-md-4 p-3"> 
                 <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food1.jpg" alt="Card image cap">
+                    <a href="blog-detail.php?id=<?php echo $row["id"]; ?>" class="wrapper-card-img">
+                        <img class="card-img-top" src="<?php echo $row["image"]; ?>" alt="Card image cap">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title"><?php echo $row["subject"]; ?></h5>
+                        <p class="card-text"><?php echo $row["sub_title"]; ?></p>
                     </div>
                     <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                        <a href="blog-detail.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
                     </div>
                 </div>
             </section>
 
-            <section class="col-12 col-sm-6 col-md-4 p-3">
-                <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food2.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="col-12 col-sm-6 col-md-4 p-3">
-                <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food3.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="col-12 col-sm-6 col-md-4 p-3">
-                <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food4.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="col-12 col-sm-6 col-md-4 p-3">
-                <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food5.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="col-12 col-sm-6 col-md-4 p-3">
-                <div class="card h-100">
-                    <a href="#" class="wrapper-card-img">
-                        <img class="card-img-top" src="asset/images/food6.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="p-3">
-                        <a href="#" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </section>
+            <?php }
+                }else{
+            ?>
+            <div class="col-12">
+                <p class="text-center">ไม่มีข้อมูลตามที่ร้องขอ</p>
+            </div>
+            <?php } ?>
         </div>
     </section>
 
 <!-- Footer -->
-    <footer class="semi-footer p-5 text-center text-md-left">
-        <div class="row">
-            <section class="col-md-4">
-                <a class="navbar-brand" href="#">
-                    <img src="asset/images/logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-                    KSN-Web Blog
-                </a>
-
-                <br><br>
-                <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-                : 095-7396209 <br>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                : kraipon.na10@gmail.com <br>
-                <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                : 99/9 ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี 12000 
-
-                <br><br>
-                <a href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-youtube-square fa-2x" aria-hidden="true"></i></a>
-
-            </section>
-
-            <section class="col-md-3">
-                <h4>รายการเมนู</h4>
-                <ul class="navbar-nav text-center text-md-left">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="col-md-5">
-                <h4>แผนที่</h4>
-                <div id="map"></div>
-            </section>
-        </div>
-    </footer>
-
-    <footer class="footer">
-        COPYRIGHT &copy; 2018
-        <a href="#">KSN Blog Story</a>
-        All Right Reserved
-    </footer>
+    <?php include_once("includes/footer.php"); ?>
 
 <!-- Button Go To Sroll Top -->
     <img id="img-scroll-top" src="asset/images/go_top.png" alt="Scroll To Top">
@@ -323,6 +201,7 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDascuY1auBpRr0ZUOkVigQsklvOZUrbVk &callback=initMap&callback=initMap" async defer></script>
     <script src="asset/js/main.js"></script>
 
@@ -356,6 +235,13 @@
                 event.preventDefault();
                 $('#form-alert-dialog').slideUp(500);
             });;
+
+
+            
+            // $("#home a:contains('Home')").parents().addClass("active");
+            // $("#about a:contains('about')").parents().addClass("active");
+            // $("#blog a:contains('Blog')").parents().addClass("active");
+            // $("#contact a:contains('Contact')").parents().addClass("active");
 
         });
     </script>

@@ -15,3 +15,15 @@ function initMap() {
       title: 'Welcome to my location!'
     });
 }
+
+$(function(){
+    $("#home a.nav-link:contains('Home')").parent().addClass("active");
+    $("#about a.nav-link:contains('About')").parent().addClass("active");
+    $("#blog a.nav-link:contains('Blog')").parent().addClass("active");
+    $("#contact a.nav-link:contains('Contact')").parent().addClass("active");
+
+    // $("#home .selmi-footer li > a.nav-link:contains('Home')").parent().addClass("semi-footer-menu-active");
+    // $("#about a.nav-link:contains('About')").parent().addClass("semi-footer-menu-active");
+    // $("#blog a.nav-link:contains('Blog')").parent().addClass("semi-footer-menu-active");
+    // $("#contact a.nav-link:contains('Contact')").parent().addClass("semi-footer-menu-active");
+});
