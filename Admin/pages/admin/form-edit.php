@@ -1,4 +1,12 @@
 <?php include_once('../authen.php') ?>
+<?php
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM admin WHERE id = '".$id."'";
+  $result = $conn->query($sql);
+
+  $row = $result->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,25 +74,29 @@
           <div class="card-body">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" disabled class="form-control" id="username" placeholder="Username" value="Username">
+              <input type="text" disabled class="form-control" id="username" name="username" required placeholder="Username" value="<?php echo $row['username']; ?>">
             </div>
             <div class="form-group">
-              <label for="firstName">FirstName</label>
-              <input type="text" class="form-control" id="firstName" placeholder="FirstName" value="FirstName">
+              <label for="first_Name">FirstName</label>
+              <input type="text" class="form-control" id="first_Name" name="first_name" required placeholder="FirstName" value="<?php echo $row['first_name']; ?>">
             </div>
             <div class="form-group">
-              <label for="lastName">LastName</label>
-              <input type="text" class="form-control" id="lastName" placeholder="LastName" value="LastName">
+              <label for="lastName">last_Name</label>
+              <input type="text" class="form-control" id="last_Name" name="last_name" required placeholder="LastName" value="<?php echo $row['last_name']; ?>">
             </div>
             <div class="form-group">
               <label>Select Permission</label>
-              <select class="form-control">
-                <option value="admin">Admin</option>
+              <select class="form-control" name="status" required>
+                <option value="superadmin" <?php echo $row['status'] == 'superadmin' ? 'selected' : '' ?>>Super  Admin</option>
+                <option value="admin" <?php echo $row['status'] == 'admin' ? 'selected' : '' ?>>Admin</option>
               </select>
             </div>
+
+            <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    

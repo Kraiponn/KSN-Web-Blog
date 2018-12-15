@@ -65,30 +65,32 @@
         <form role="form" action="create.php" method="post">
           <div class="card-body">
             <div class="form-group">
-              <label for="firstName">FirstName</label>
-              <input type="text" class="form-control" id="firstName" placeholder="FirstName">
+              <label for="first_name">FirstName</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="FirstName">
             </div>
             <div class="form-group">
-              <label for="lastName">LastName</label>
-              <input type="text" class="form-control" id="lastName" placeholder="LastName">
+              <label for="last_name">LastName</label>
+              <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="LastName">
             </div>
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Username">
+              <label for="user_name">Username</label>
+              <input type="text" class="form-control" id="user_name" name="user_name" required placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
             </div>
             <div class="form-group">
               <label>Select Permission</label>
-              <select class="form-control">
+              <select class="form-control" name="status" required>
+                <option value="" disabled selected>Select Permission</option>
+                <option value="superadmin">Super Admin</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    

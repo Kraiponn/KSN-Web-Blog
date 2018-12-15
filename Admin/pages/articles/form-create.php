@@ -25,10 +25,14 @@
   <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Custom Style -->
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  <!-- Bootstrap Toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -61,27 +65,27 @@
     <section class="content">
       <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Create Data</h3>
+          <h3 class="card-title">Create Data</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="create.php" method="post">
+        <form action="create.php" method="post" enctype="multipart/form-data">
           <div class="card-body">
 
             <div class="form-group">
               <label for="subject">Subject</label>
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              <input type="text" class="form-control" id="subject" name="subject" required placeholder="Subject">
             </div>
 
             <div class="form-group">
               <label for="sub_title">Sub title</label>
-              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title">
+              <input type="text" class="form-control" id="sub_title" name="sub_title" required placeholder="Sub title">
             </div>
 
             <div class="form-group">
               <label>Upload Image</label>
               <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="customFile">
+                  <input type="file" class="custom-file-input" name="file" id="customFile" required>
                   <label class="custom-file-label" for="customFile">Choose file</label>
               </div>
               <figure class="figure text-center d-none mt-2">
@@ -105,14 +109,16 @@
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                  <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
+                  <textarea class="d-none" name="detail" id="detail" rows="10" cols="80">
+                      This is my textarea to be replaced with CKEditor.
+                  </textarea>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <label>Select a Tags</label>
-              <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
+              <select class="form-control select2" name="tags[]" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
                 <option value="html">html</option>
                 <option value="css">css</option>
                 <option value="javascript">javascript</option>
@@ -120,10 +126,10 @@
                 <option value="mysql">mysql</option>
               </select>
             </div>
-
+            <input type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="Block" data-onstyle="success" data-style="ios">
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    
@@ -157,6 +163,8 @@
 <script src="../../plugins/ckeditor/ckeditor.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap Toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
   $(function () {
@@ -182,14 +190,11 @@
         }
     })
 
-    ClassicEditor
-      .create(document.querySelector('#detail'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+    CKEDITOR.replace('detail', {
+        filebrowserBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+        filebrowserUploadUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=', 
+        filebrowserImageBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr='
+    });
 
     //Initialize Select2 Elements
     $('.select2').select2()

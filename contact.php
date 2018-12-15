@@ -43,6 +43,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body">
@@ -62,6 +63,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="row">
             <div class="col-12">
                 <div class="card">

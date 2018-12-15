@@ -132,12 +132,14 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
+  </div> 
+
   <!-- footer -->
   <?php include_once('../includes/footer.php') ?>
+
 </div>
 <!-- ./wrapper -->
-
+ 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

@@ -1,4 +1,10 @@
 <?php include_once('../authen.php') ?>
+<?php 
+
+  $sql = "SELECT * FROM admin";
+  $result = $conn->query($sql) or die($conn->error);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +33,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -77,22 +84,28 @@
             </tr>
             </thead>
             <tbody>
-            <?php for($id=1; $id <= 5; $id++) { ?>
+              <?php   
+                  $num = 0;
+                  while($row = $result->fetch_assoc()) {
+                      $num++;
+              ?>
               <tr>
-                <td><?php echo $id; ?></td>
-                <td>Username<?php echo $id; ?></td>
-                <td>FirstName<?php echo $id; ?></td>
-                <td>LastName<?php echo $id; ?></td>
-                <td><span class="badge badge-primary">Admin</span></td>
+                <td><?php echo $num; ?></td>
+                <td><?php echo $row['first_name']; ?></td>
+                <td><?php echo $row['last_name']; ?></td>
+                <td><?php echo $row['username']; ?></td>
+                <td><span class="badge badge-primary"><?php echo $row['status'] ?></span></td>
                 <td>
-                  <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
+                  <a href="form-edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning text-white">
                     <i class="fas fa-edit"></i> edit
                   </a> 
                 </td>
                 <td>
-                  <a href="#" onclick="deleteItem(<?php echo $id; ?>);" class="btn btn-sm btn-danger">
+                    <?php if($row['id'] != 1) { ?>
+                  <a href="#" onclick="deleteItem(<?php echo $row['id']; ?>);" class="btn btn-sm btn-danger">
                     <i class="fas fa-trash-alt"></i> Delete
                   </a>
+                    <?php } ?>
                 </td>
               </tr>
             <?php } ?>

@@ -1,12 +1,38 @@
 <?php 
-  session_start();
+  require_once('../php/connect.php');
+
   if (isset($_POST['submit'])) {
-    $_SESSION['authen_id'] = 1; 
-    header('Location: pages/dashboard');
+      $username = $conn->real_escape_string($_POST['username']);
+      $password = $conn->real_escape_string($_POST['password']);
+
+      $sql = "SELECT * FROM admin WHERE username = '".$_POST['username']."'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+
+      if(!empty($row) && password_verify($password, $row['password'])){
+          $sql_last_login = "UPDATE admin SET last_login = '".date('Y-m-d H:i:s')."' 
+                             WHERE id = '".$row['id']."'";
+          $res_last_login = $conn->query($sql_last_login);
+
+          if($res_last_login){
+              session_start();
+              $_SESSION['authen_id'] = $row['id']; 
+              $_SESSION['first_name'] = $row['first_name']; 
+              $_SESSION['last_name'] = $row['last_name']; 
+              $_SESSION['last_login'] = $row['last_login']; 
+              $_SESSION['status'] = $row['status']; 
+              header('Location: pages/dashboard');
+          }else{
+            echo '<script> alert("เกิดข้อผิดพลาด ไม่สามารถค้นหาการลงชื่อเข้าใช้งานล่าสุดได้"); </script>';
+          }
+      } else{
+        echo '<script> alert("User name not math, Please try again."); </script>';
+        header('Location: pages/dashboard');
+      }
   }
 
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,19 +71,19 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Login to start your Admin</p>
 
-      <form action="" method="post">
+      <form action="login.php" method="post">
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="username" required placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fas fa-lock"></i></span>
             </div>
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+            <input type="password" class="form-control" name="password" required placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
         </div>
 
         <div class="row">
